@@ -1,0 +1,36 @@
+{
+	"name": "DelimitedText30",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "FileServer5",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"errorfilename": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "FileServerLocation",
+				"fileName": {
+					"value": "@dataset().errorfilename",
+					"type": "Expression"
+				}
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Prop_0",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

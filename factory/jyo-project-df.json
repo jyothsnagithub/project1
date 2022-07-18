@@ -1,0 +1,9 @@
+{
+	"name": "jyo-project-df",
+	"location": "eastus2",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "ad46e2d6-b362-4a08-b6bb-18960f31b71a",
+		"tenantId": "54c378c8-8801-449c-9e20-917ec429cb2e"
+	}
+}
