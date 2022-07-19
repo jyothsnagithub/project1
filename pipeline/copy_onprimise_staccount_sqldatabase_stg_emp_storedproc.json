@@ -355,16 +355,6 @@
 				}
 			}
 		],
-		"parameters": {
-			"onpp": {
-				"type": "string"
-			}
-		},
-		"variables": {
-			"onppw": {
-				"type": "String"
-			}
-		},
 		"annotations": [],
 		"lastPublishTime": "2022-07-12T16:38:22Z"
 	},
