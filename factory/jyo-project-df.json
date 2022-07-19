@@ -1,5 +1,13 @@
 {
 	"name": "jyo-project-df",
+	"properties": {
+		"globalParameters": {
+			"onprimiseusername": {
+				"type": "string",
+				"value": "desktop-ff8cp36\\dell"
+			}
+		}
+	},
 	"location": "eastus2",
 	"identity": {
 		"type": "SystemAssigned",
