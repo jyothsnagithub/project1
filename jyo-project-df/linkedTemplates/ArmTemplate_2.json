@@ -311,7 +311,17 @@
 				"linkedServiceName": {
 					"referenceName": "FileServer1",
 					"type": "LinkedServiceReference",
-					"parameters": {}
+					"parameters": {
+						"onprimisep": {
+							"value": "@dataset().opp",
+							"type": "Expression"
+						}
+					}
+				},
+				"parameters": {
+					"opp": {
+						"type": "string"
+					}
 				},
 				"annotations": [],
 				"type": "DelimitedText",
@@ -630,7 +640,12 @@
 							{
 								"referenceName": "DelimitedText6",
 								"type": "DatasetReference",
-								"parameters": {}
+								"parameters": {
+									"opp": {
+										"value": "@pipeline().globalParameters.onprimiseusername",
+										"type": "Expression"
+									}
+								}
 							}
 						],
 						"outputs": [
@@ -1010,7 +1025,12 @@
 							{
 								"referenceName": "DelimitedText6",
 								"type": "DatasetReference",
-								"parameters": {}
+								"parameters": {
+									"opp": {
+										"value": "@pipeline().globalParameters.onprimiseusername",
+										"type": "Expression"
+									}
+								}
 							}
 						],
 						"outputs": [
