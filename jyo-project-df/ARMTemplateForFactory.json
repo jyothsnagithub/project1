@@ -2893,7 +2893,7 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobStorageLocation",
-						"folderPath": "filefolder/files",
+						"fileName": "emp1.txt",
 						"container": "development"
 					},
 					"columnDelimiter": "|",
