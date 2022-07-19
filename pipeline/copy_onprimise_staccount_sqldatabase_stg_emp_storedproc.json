@@ -217,7 +217,13 @@
 				"inputs": [
 					{
 						"referenceName": "DelimitedText6",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"opp": {
+								"value": "@pipeline().globalParameters.onprimiseusername",
+								"type": "Expression"
+							}
+						}
 					}
 				],
 				"outputs": [

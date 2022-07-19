@@ -3,7 +3,18 @@
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "FileServer1",
-			"type": "LinkedServiceReference"
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"onprimisep": {
+					"value": "@dataset().opp",
+					"type": "Expression"
+				}
+			}
+		},
+		"parameters": {
+			"opp": {
+				"type": "string"
+			}
 		},
 		"annotations": [],
 		"type": "DelimitedText",
