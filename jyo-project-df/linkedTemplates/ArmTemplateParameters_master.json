@@ -83,12 +83,6 @@
 		"metadatafile_properties_typeProperties_userId": {
 			"value": "desktop-ff8cp36\\dell"
 		},
-		"default_properties_onprimiseusername_value": {
-			"value": "desktop-ff8cp36\\dell"
-		},
-		"default_properties_azsqldbusername_value": {
-			"value": "jyothsna"
-		},
 		"containerUri": {
 			"value": ""
 		},

@@ -110,14 +110,6 @@
 		"metadatafile_properties_typeProperties_userId": {
 			"type": "string",
 			"defaultValue": "desktop-ff8cp36\\dell"
-		},
-		"default_properties_onprimiseusername_value": {
-			"type": "string",
-			"defaultValue": "desktop-ff8cp36\\dell"
-		},
-		"default_properties_azsqldbusername_value": {
-			"type": "string",
-			"defaultValue": "jyothsna"
 		}
 	},
 	"variables": {
@@ -3215,22 +3207,6 @@
 			"properties": {
 				"type": "SelfHosted",
 				"typeProperties": {}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/default')]",
-			"type": "Microsoft.DataFactory/factories/globalparameters",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"onprimiseusername": {
-					"type": "string",
-					"value": "[parameters('default_properties_onprimiseusername_value')]"
-				},
-				"azsqldbusername": {
-					"type": "string",
-					"value": "[parameters('default_properties_azsqldbusername_value')]"
-				}
 			},
 			"dependsOn": []
 		}
