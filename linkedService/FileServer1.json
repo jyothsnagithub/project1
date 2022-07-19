@@ -3,7 +3,8 @@
 	"properties": {
 		"parameters": {
 			"onpremisep": {
-				"type": "String"
+				"type": "String",
+				"defaultValue": "jyothsna"
 			}
 		},
 		"annotations": [],
