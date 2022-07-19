@@ -1,17 +1,29 @@
 {
 	"name": "FileServer1",
-	"type": "Microsoft.DataFactory/factories/linkedservices",
 	"properties": {
+		"parameters": {
+			"onpremisep": {
+				"type": "String"
+			}
+		},
 		"annotations": [],
 		"type": "FileServer",
 		"typeProperties": {
 			"host": "D:\\jyo\\azure data engineer\\data",
-			"userId": "DESKTOP-FF8CP36\\dell",
-			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI0YTQ1MjZhYi0wNzA5LTRkZmMtOTZiOS0zNDM1Y2E1ZTM2MDciLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+			"userId": "@{linkedService().onpremisep}",
+			"password": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "AzureKeyVault1",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "onprimisepw"
+			}
 		},
 		"connectVia": {
 			"referenceName": "jyo-IR",
 			"type": "IntegrationRuntimeReference"
 		}
-	}
+	},
+	"type": "Microsoft.DataFactory/factories/linkedservices"
 }
