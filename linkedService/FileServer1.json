@@ -4,7 +4,7 @@
 		"parameters": {
 			"onpremisep": {
 				"type": "String",
-				"defaultValue": "jyothsna"
+				"defaultValue": "desktop-ff8cp36\\dell"
 			}
 		},
 		"annotations": [],
