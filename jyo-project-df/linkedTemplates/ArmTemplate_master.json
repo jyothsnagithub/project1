@@ -1,0 +1,278 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "jyo-project-df"
+		},
+		"AzureBlobStorage2_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage2'"
+		},
+		"AzureSqlDatabase1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase1'"
+		},
+		"AzureSqlDatabase2_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase2'"
+		},
+		"AzureSqlDatabase3_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase3'"
+		},
+		"FileServer2_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'FileServer2'"
+		},
+		"FileServer3_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'FileServer3'"
+		},
+		"FileServer4_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'FileServer4'"
+		},
+		"FileServer5_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'FileServer5'"
+		},
+		"FileServer6_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'FileServer6'"
+		},
+		"metadatafile_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'metadatafile'"
+		},
+		"AzureBlobStorage1_properties_typeProperties_connectionString_secretName": {
+			"type": "string",
+			"defaultValue": "storageacconstr"
+		},
+		"AzureKeyVault1_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://jyokey.vault.azure.net/"
+		},
+		"FileServer1_properties_typeProperties_host": {
+			"type": "string",
+			"defaultValue": "D:\\jyo\\azure data engineer\\data"
+		},
+		"FileServer1_properties_typeProperties_userId": {
+			"type": "string",
+			"defaultValue": "@{linkedService().onprimisep}"
+		},
+		"FileServer2_properties_typeProperties_host": {
+			"type": "string",
+			"defaultValue": "D:\\jyo\\azure data engineer\\data"
+		},
+		"FileServer2_properties_typeProperties_userId": {
+			"type": "string",
+			"defaultValue": "DESKTOP-FF8CP36"
+		},
+		"FileServer3_properties_typeProperties_host": {
+			"type": "string",
+			"defaultValue": "D:\\jyo\\azure data engineer\\configfiles"
+		},
+		"FileServer3_properties_typeProperties_userId": {
+			"type": "string",
+			"defaultValue": "desktop-ff8cp36\\dell"
+		},
+		"FileServer4_properties_typeProperties_host": {
+			"type": "string",
+			"defaultValue": "D:\\jyo\\azure data engineer\\data"
+		},
+		"FileServer4_properties_typeProperties_userId": {
+			"type": "string",
+			"defaultValue": "desktop-ff8cp36\\dell"
+		},
+		"FileServer5_properties_typeProperties_host": {
+			"type": "string",
+			"defaultValue": "D:\\jyo\\azure data engineer\\data"
+		},
+		"FileServer5_properties_typeProperties_userId": {
+			"type": "string",
+			"defaultValue": "desktop-ff8cp36\\dell"
+		},
+		"FileServer6_properties_typeProperties_host": {
+			"type": "string",
+			"defaultValue": "D:\\jyo\\azure data engineer\\data"
+		},
+		"FileServer6_properties_typeProperties_userId": {
+			"type": "string",
+			"defaultValue": "desktop-ff8cp36\\dell"
+		},
+		"metadatafile_properties_typeProperties_host": {
+			"type": "string",
+			"defaultValue": "D:\\jyo\\azure data engineer\\data"
+		},
+		"metadatafile_properties_typeProperties_userId": {
+			"type": "string",
+			"defaultValue": "desktop-ff8cp36\\dell"
+		},
+		"default_properties_onprimiseusername_value": {
+			"type": "string",
+			"defaultValue": "desktop-ff8cp36\\dell"
+		},
+		"default_properties_azsqldbusername_value": {
+			"type": "string",
+			"defaultValue": "jyothsna"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "jyo-project-df_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"AzureBlobStorage2_connectionString": {
+						"value": "[parameters('AzureBlobStorage2_connectionString')]"
+					},
+					"AzureSqlDatabase1_connectionString": {
+						"value": "[parameters('AzureSqlDatabase1_connectionString')]"
+					},
+					"AzureSqlDatabase2_connectionString": {
+						"value": "[parameters('AzureSqlDatabase2_connectionString')]"
+					},
+					"AzureSqlDatabase3_connectionString": {
+						"value": "[parameters('AzureSqlDatabase3_connectionString')]"
+					},
+					"FileServer2_password": {
+						"value": "[parameters('FileServer2_password')]"
+					},
+					"FileServer3_password": {
+						"value": "[parameters('FileServer3_password')]"
+					},
+					"default_properties_onprimiseusername_value": {
+						"value": "[parameters('default_properties_onprimiseusername_value')]"
+					},
+					"default_properties_azsqldbusername_value": {
+						"value": "[parameters('default_properties_azsqldbusername_value')]"
+					},
+					"AzureKeyVault1_properties_typeProperties_baseUrl": {
+						"value": "[parameters('AzureKeyVault1_properties_typeProperties_baseUrl')]"
+					},
+					"AzureBlobStorage1_properties_typeProperties_connectionString_secretName": {
+						"value": "[parameters('AzureBlobStorage1_properties_typeProperties_connectionString_secretName')]"
+					},
+					"FileServer1_properties_typeProperties_host": {
+						"value": "[parameters('FileServer1_properties_typeProperties_host')]"
+					},
+					"FileServer1_properties_typeProperties_userId": {
+						"value": "[parameters('FileServer1_properties_typeProperties_userId')]"
+					},
+					"FileServer2_properties_typeProperties_host": {
+						"value": "[parameters('FileServer2_properties_typeProperties_host')]"
+					},
+					"FileServer2_properties_typeProperties_userId": {
+						"value": "[parameters('FileServer2_properties_typeProperties_userId')]"
+					},
+					"FileServer3_properties_typeProperties_host": {
+						"value": "[parameters('FileServer3_properties_typeProperties_host')]"
+					},
+					"FileServer3_properties_typeProperties_userId": {
+						"value": "[parameters('FileServer3_properties_typeProperties_userId')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "jyo-project-df_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"FileServer4_password": {
+						"value": "[parameters('FileServer4_password')]"
+					},
+					"FileServer5_password": {
+						"value": "[parameters('FileServer5_password')]"
+					},
+					"FileServer6_password": {
+						"value": "[parameters('FileServer6_password')]"
+					},
+					"metadatafile_password": {
+						"value": "[parameters('metadatafile_password')]"
+					},
+					"FileServer4_properties_typeProperties_host": {
+						"value": "[parameters('FileServer4_properties_typeProperties_host')]"
+					},
+					"FileServer4_properties_typeProperties_userId": {
+						"value": "[parameters('FileServer4_properties_typeProperties_userId')]"
+					},
+					"FileServer5_properties_typeProperties_host": {
+						"value": "[parameters('FileServer5_properties_typeProperties_host')]"
+					},
+					"FileServer5_properties_typeProperties_userId": {
+						"value": "[parameters('FileServer5_properties_typeProperties_userId')]"
+					},
+					"FileServer6_properties_typeProperties_host": {
+						"value": "[parameters('FileServer6_properties_typeProperties_host')]"
+					},
+					"FileServer6_properties_typeProperties_userId": {
+						"value": "[parameters('FileServer6_properties_typeProperties_userId')]"
+					},
+					"metadatafile_properties_typeProperties_host": {
+						"value": "[parameters('metadatafile_properties_typeProperties_host')]"
+					},
+					"metadatafile_properties_typeProperties_userId": {
+						"value": "[parameters('metadatafile_properties_typeProperties_userId')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'jyo-project-df_ArmTemplate_0')]"
+			]
+		},
+		{
+			"name": "jyo-project-df_ArmTemplate_2",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_2.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'jyo-project-df_ArmTemplate_1')]"
+			]
+		}
+	]
+}

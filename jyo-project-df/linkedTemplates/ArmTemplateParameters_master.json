@@ -1,0 +1,99 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "jyo-project-df"
+		},
+		"AzureBlobStorage2_connectionString": {
+			"value": ""
+		},
+		"AzureSqlDatabase1_connectionString": {
+			"value": ""
+		},
+		"AzureSqlDatabase2_connectionString": {
+			"value": ""
+		},
+		"AzureSqlDatabase3_connectionString": {
+			"value": ""
+		},
+		"FileServer2_password": {
+			"value": ""
+		},
+		"FileServer3_password": {
+			"value": ""
+		},
+		"FileServer4_password": {
+			"value": ""
+		},
+		"FileServer5_password": {
+			"value": ""
+		},
+		"FileServer6_password": {
+			"value": ""
+		},
+		"metadatafile_password": {
+			"value": ""
+		},
+		"AzureBlobStorage1_properties_typeProperties_connectionString_secretName": {
+			"value": "storageacconstr"
+		},
+		"AzureKeyVault1_properties_typeProperties_baseUrl": {
+			"value": "https://jyokey.vault.azure.net/"
+		},
+		"FileServer1_properties_typeProperties_host": {
+			"value": "D:\\jyo\\azure data engineer\\data"
+		},
+		"FileServer1_properties_typeProperties_userId": {
+			"value": "@{linkedService().onprimisep}"
+		},
+		"FileServer2_properties_typeProperties_host": {
+			"value": "D:\\jyo\\azure data engineer\\data"
+		},
+		"FileServer2_properties_typeProperties_userId": {
+			"value": "DESKTOP-FF8CP36"
+		},
+		"FileServer3_properties_typeProperties_host": {
+			"value": "D:\\jyo\\azure data engineer\\configfiles"
+		},
+		"FileServer3_properties_typeProperties_userId": {
+			"value": "desktop-ff8cp36\\dell"
+		},
+		"FileServer4_properties_typeProperties_host": {
+			"value": "D:\\jyo\\azure data engineer\\data"
+		},
+		"FileServer4_properties_typeProperties_userId": {
+			"value": "desktop-ff8cp36\\dell"
+		},
+		"FileServer5_properties_typeProperties_host": {
+			"value": "D:\\jyo\\azure data engineer\\data"
+		},
+		"FileServer5_properties_typeProperties_userId": {
+			"value": "desktop-ff8cp36\\dell"
+		},
+		"FileServer6_properties_typeProperties_host": {
+			"value": "D:\\jyo\\azure data engineer\\data"
+		},
+		"FileServer6_properties_typeProperties_userId": {
+			"value": "desktop-ff8cp36\\dell"
+		},
+		"metadatafile_properties_typeProperties_host": {
+			"value": "D:\\jyo\\azure data engineer\\data"
+		},
+		"metadatafile_properties_typeProperties_userId": {
+			"value": "desktop-ff8cp36\\dell"
+		},
+		"default_properties_onprimiseusername_value": {
+			"value": "desktop-ff8cp36\\dell"
+		},
+		"default_properties_azsqldbusername_value": {
+			"value": "jyothsna"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}

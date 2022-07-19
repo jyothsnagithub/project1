@@ -1,0 +1,10 @@
+{
+	"onprimiseusername": {
+		"type": "string",
+		"value": "desktop-ff8cp36\\dell"
+	},
+	"azsqldbusername": {
+		"type": "string",
+		"value": "jyothsna"
+	}
+}
