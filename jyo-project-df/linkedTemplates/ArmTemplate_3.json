@@ -567,7 +567,7 @@
 											"type": "DatasetReference",
 											"parameters": {
 												"ContainerNameDataSet": {
-													"value": "@item().Development",
+													"value": "@item().DevelopmentContainerName",
 													"type": "Expression"
 												},
 												"DirectoryDataset": {
