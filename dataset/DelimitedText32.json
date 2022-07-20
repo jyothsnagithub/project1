@@ -1,0 +1,70 @@
+{
+	"name": "DelimitedText32",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Link_Lookup_Incremental",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"username": {
+					"value": "@dataset().uname",
+					"type": "Expression"
+				}
+			}
+		},
+		"parameters": {
+			"uname": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "FileServerLocation",
+				"fileName": "config_files_for_incre_load.txt"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "HostName",
+				"type": "String"
+			},
+			{
+				"name": "UserName",
+				"type": "String"
+			},
+			{
+				"name": "ContainerName",
+				"type": "String"
+			},
+			{
+				"name": "foldername",
+				"type": "String"
+			},
+			{
+				"name": "FileName",
+				"type": "String"
+			},
+			{
+				"name": "ColDelimiter",
+				"type": "String"
+			},
+			{
+				"name": "RowDelimeter",
+				"type": "String"
+			},
+			{
+				"name": "StgTable",
+				"type": "String"
+			},
+			{
+				"name": "StoredProcedure",
+				"type": "String"
+			}
+		]
+	}
+}
