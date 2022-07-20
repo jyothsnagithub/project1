@@ -8,6 +8,9 @@
 		"AzureBlobStorage2_connectionString": {
 			"value": ""
 		},
+		"AzureBlobStorage3_connectionString": {
+			"value": ""
+		},
 		"AzureSqlDatabase1_connectionString": {
 			"value": ""
 		},
@@ -76,6 +79,12 @@
 		},
 		"FileServer6_properties_typeProperties_userId": {
 			"value": "desktop-ff8cp36\\dell"
+		},
+		"FileServer7_properties_typeProperties_host": {
+			"value": "@{linkedService().hostnamelink}"
+		},
+		"FileServer7_properties_typeProperties_userId": {
+			"value": "@{linkedService().usernamelink}"
 		},
 		"Link_Lookup_Incremental_properties_typeProperties_host": {
 			"value": "D:\\jyo\\azure data engineer\\data\\config_files_for_incre_load"

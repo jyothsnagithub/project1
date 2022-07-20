@@ -11,6 +11,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage2'"
 		},
+		"AzureBlobStorage3_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage3'"
+		},
 		"AzureSqlDatabase1_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase1'"
@@ -103,6 +107,14 @@
 			"type": "string",
 			"defaultValue": "desktop-ff8cp36\\dell"
 		},
+		"FileServer7_properties_typeProperties_host": {
+			"type": "string",
+			"defaultValue": "@{linkedService().hostnamelink}"
+		},
+		"FileServer7_properties_typeProperties_userId": {
+			"type": "string",
+			"defaultValue": "@{linkedService().usernamelink}"
+		},
 		"Link_Lookup_Incremental_properties_typeProperties_host": {
 			"type": "string",
 			"defaultValue": "D:\\jyo\\azure data engineer\\data\\config_files_for_incre_load"
@@ -149,6 +161,9 @@
 					"AzureBlobStorage2_connectionString": {
 						"value": "[parameters('AzureBlobStorage2_connectionString')]"
 					},
+					"AzureBlobStorage3_connectionString": {
+						"value": "[parameters('AzureBlobStorage3_connectionString')]"
+					},
 					"AzureSqlDatabase1_connectionString": {
 						"value": "[parameters('AzureSqlDatabase1_connectionString')]"
 					},
@@ -160,12 +175,6 @@
 					},
 					"FileServer2_password": {
 						"value": "[parameters('FileServer2_password')]"
-					},
-					"FileServer3_password": {
-						"value": "[parameters('FileServer3_password')]"
-					},
-					"FileServer4_password": {
-						"value": "[parameters('FileServer4_password')]"
 					},
 					"AzureKeyVault1_properties_typeProperties_baseUrl": {
 						"value": "[parameters('AzureKeyVault1_properties_typeProperties_baseUrl')]"
@@ -184,18 +193,6 @@
 					},
 					"FileServer2_properties_typeProperties_userId": {
 						"value": "[parameters('FileServer2_properties_typeProperties_userId')]"
-					},
-					"FileServer3_properties_typeProperties_host": {
-						"value": "[parameters('FileServer3_properties_typeProperties_host')]"
-					},
-					"FileServer3_properties_typeProperties_userId": {
-						"value": "[parameters('FileServer3_properties_typeProperties_userId')]"
-					},
-					"FileServer4_properties_typeProperties_host": {
-						"value": "[parameters('FileServer4_properties_typeProperties_host')]"
-					},
-					"FileServer4_properties_typeProperties_userId": {
-						"value": "[parameters('FileServer4_properties_typeProperties_userId')]"
 					}
 				}
 			},
@@ -215,6 +212,12 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
+					"FileServer3_password": {
+						"value": "[parameters('FileServer3_password')]"
+					},
+					"FileServer4_password": {
+						"value": "[parameters('FileServer4_password')]"
+					},
 					"FileServer5_password": {
 						"value": "[parameters('FileServer5_password')]"
 					},
@@ -223,6 +226,18 @@
 					},
 					"metadatafile_password": {
 						"value": "[parameters('metadatafile_password')]"
+					},
+					"FileServer3_properties_typeProperties_host": {
+						"value": "[parameters('FileServer3_properties_typeProperties_host')]"
+					},
+					"FileServer3_properties_typeProperties_userId": {
+						"value": "[parameters('FileServer3_properties_typeProperties_userId')]"
+					},
+					"FileServer4_properties_typeProperties_host": {
+						"value": "[parameters('FileServer4_properties_typeProperties_host')]"
+					},
+					"FileServer4_properties_typeProperties_userId": {
+						"value": "[parameters('FileServer4_properties_typeProperties_userId')]"
 					},
 					"FileServer5_properties_typeProperties_host": {
 						"value": "[parameters('FileServer5_properties_typeProperties_host')]"
@@ -235,6 +250,12 @@
 					},
 					"FileServer6_properties_typeProperties_userId": {
 						"value": "[parameters('FileServer6_properties_typeProperties_userId')]"
+					},
+					"FileServer7_properties_typeProperties_host": {
+						"value": "[parameters('FileServer7_properties_typeProperties_host')]"
+					},
+					"FileServer7_properties_typeProperties_userId": {
+						"value": "[parameters('FileServer7_properties_typeProperties_userId')]"
 					},
 					"Link_Lookup_Incremental_properties_typeProperties_host": {
 						"value": "[parameters('Link_Lookup_Incremental_properties_typeProperties_host')]"

@@ -11,6 +11,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage2'"
 		},
+		"AzureBlobStorage3_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage3'"
+		},
 		"AzureSqlDatabase1_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase1'"
@@ -26,14 +30,6 @@
 		"FileServer2_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'FileServer2'"
-		},
-		"FileServer3_password": {
-			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'FileServer3'"
-		},
-		"FileServer4_password": {
-			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'FileServer4'"
 		},
 		"AzureKeyVault1_properties_typeProperties_baseUrl": {
 			"type": "string",
@@ -58,22 +54,6 @@
 		"FileServer2_properties_typeProperties_userId": {
 			"type": "string",
 			"defaultValue": "DESKTOP-FF8CP36"
-		},
-		"FileServer3_properties_typeProperties_host": {
-			"type": "string",
-			"defaultValue": "D:\\jyo\\azure data engineer\\configfiles"
-		},
-		"FileServer3_properties_typeProperties_userId": {
-			"type": "string",
-			"defaultValue": "desktop-ff8cp36\\dell"
-		},
-		"FileServer4_properties_typeProperties_host": {
-			"type": "string",
-			"defaultValue": "D:\\jyo\\azure data engineer\\data"
-		},
-		"FileServer4_properties_typeProperties_userId": {
-			"type": "string",
-			"defaultValue": "desktop-ff8cp36\\dell"
 		}
 	},
 	"variables": {
@@ -89,6 +69,19 @@
 				"type": "AzureBlobStorage",
 				"typeProperties": {
 					"connectionString": "[parameters('AzureBlobStorage2_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureBlobStorage3')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('AzureBlobStorage3_connectionString')]"
 				}
 			},
 			"dependsOn": []
@@ -510,6 +503,61 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/DelimitedText34')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage3",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"ContainerNameDataSet": {
+						"type": "string"
+					},
+					"DirectoryDataset": {
+						"type": "string"
+					},
+					"ColDelimiter": {
+						"type": "string"
+					},
+					"RowDelimiter": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"folderPath": {
+							"value": "@dataset().DirectoryDataset",
+							"type": "Expression"
+						},
+						"container": {
+							"value": "@dataset().ContainerNameDataSet",
+							"type": "Expression"
+						}
+					},
+					"columnDelimiter": {
+						"value": "@dataset().ColDelimiter",
+						"type": "Expression"
+					},
+					"rowDelimiter": {
+						"value": "@dataset().RowDelimiter",
+						"type": "Expression"
+					},
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage3')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/AzureBlobStorage1')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -578,54 +626,6 @@
 					"password": {
 						"type": "SecureString",
 						"value": "[parameters('FileServer2_password')]"
-					}
-				},
-				"connectVia": {
-					"referenceName": "jyo-IR",
-					"type": "IntegrationRuntimeReference"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/integrationRuntimes/jyo-IR')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/FileServer3')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "FileServer",
-				"typeProperties": {
-					"host": "[parameters('FileServer3_properties_typeProperties_host')]",
-					"userId": "[parameters('FileServer3_properties_typeProperties_userId')]",
-					"password": {
-						"type": "SecureString",
-						"value": "[parameters('FileServer3_password')]"
-					}
-				},
-				"connectVia": {
-					"referenceName": "jyo-IR",
-					"type": "IntegrationRuntimeReference"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/integrationRuntimes/jyo-IR')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/FileServer4')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "FileServer",
-				"typeProperties": {
-					"host": "[parameters('FileServer4_properties_typeProperties_host')]",
-					"userId": "[parameters('FileServer4_properties_typeProperties_userId')]",
-					"password": {
-						"type": "SecureString",
-						"value": "[parameters('FileServer4_password')]"
 					}
 				},
 				"connectVia": {
