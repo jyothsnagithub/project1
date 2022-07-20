@@ -103,6 +103,14 @@
 			"type": "string",
 			"defaultValue": "desktop-ff8cp36\\dell"
 		},
+		"Link_Lookup_Incremental_properties_typeProperties_host": {
+			"type": "string",
+			"defaultValue": "D:\\jyo\\azure data engineer\\data\\config_files_for_incre_load"
+		},
+		"Link_Lookup_Incremental_properties_typeProperties_userId": {
+			"type": "string",
+			"defaultValue": "@{linkedService().username}"
+		},
 		"metadatafile_properties_typeProperties_host": {
 			"type": "string",
 			"defaultValue": "D:\\jyo\\azure data engineer\\data"
@@ -925,6 +933,59 @@
 				"[concat(variables('factoryId'), '/datasets/DelimitedText9')]",
 				"[concat(variables('factoryId'), '/datasets/DelimitedText10')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase2')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/lookup with incremental load')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Lookup1",
+						"type": "Lookup",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "FileServerReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
+							"dataset": {
+								"referenceName": "DelimitedText32",
+								"type": "DatasetReference",
+								"parameters": {
+									"uname": {
+										"value": "@pipeline().globalParameters.onprimiseusername",
+										"type": "Expression"
+									}
+								}
+							}
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/DelimitedText32')]"
 			]
 		},
 		{
@@ -2751,6 +2812,81 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/DelimitedText32')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Link_Lookup_Incremental",
+					"type": "LinkedServiceReference",
+					"parameters": {
+						"username": {
+							"value": "@dataset().uname",
+							"type": "Expression"
+						}
+					}
+				},
+				"parameters": {
+					"uname": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "FileServerLocation",
+						"fileName": "config_files_for_incre_load.txt"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "HostName",
+						"type": "String"
+					},
+					{
+						"name": "UserName",
+						"type": "String"
+					},
+					{
+						"name": "ContainerName",
+						"type": "String"
+					},
+					{
+						"name": "foldername",
+						"type": "String"
+					},
+					{
+						"name": "FileName",
+						"type": "String"
+					},
+					{
+						"name": "ColDelimiter",
+						"type": "String"
+					},
+					{
+						"name": "RowDelimeter",
+						"type": "String"
+					},
+					{
+						"name": "StgTable",
+						"type": "String"
+					},
+					{
+						"name": "StoredProcedure",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Link_Lookup_Incremental')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/DelimitedText4')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -3174,6 +3310,40 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/integrationRuntimes/jyo-IR')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Link_Lookup_Incremental')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"parameters": {
+					"username": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "FileServer",
+				"typeProperties": {
+					"host": "[parameters('Link_Lookup_Incremental_properties_typeProperties_host')]",
+					"userId": "[parameters('Link_Lookup_Incremental_properties_typeProperties_userId')]",
+					"password": {
+						"type": "AzureKeyVaultSecret",
+						"store": {
+							"referenceName": "AzureKeyVault1",
+							"type": "LinkedServiceReference"
+						},
+						"secretName": "onprimisepw"
+					}
+				},
+				"connectVia": {
+					"referenceName": "jyo-IR",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/integrationRuntimes/jyo-IR')]",
+				"[concat(variables('factoryId'), '/linkedServices/AzureKeyVault1')]"
 			]
 		},
 		{

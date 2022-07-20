@@ -103,6 +103,14 @@
 			"type": "string",
 			"defaultValue": "desktop-ff8cp36\\dell"
 		},
+		"Link_Lookup_Incremental_properties_typeProperties_host": {
+			"type": "string",
+			"defaultValue": "D:\\jyo\\azure data engineer\\data\\config_files_for_incre_load"
+		},
+		"Link_Lookup_Incremental_properties_typeProperties_userId": {
+			"type": "string",
+			"defaultValue": "@{linkedService().username}"
+		},
 		"metadatafile_properties_typeProperties_host": {
 			"type": "string",
 			"defaultValue": "D:\\jyo\\azure data engineer\\data"
@@ -228,6 +236,12 @@
 					"FileServer6_properties_typeProperties_userId": {
 						"value": "[parameters('FileServer6_properties_typeProperties_userId')]"
 					},
+					"Link_Lookup_Incremental_properties_typeProperties_host": {
+						"value": "[parameters('Link_Lookup_Incremental_properties_typeProperties_host')]"
+					},
+					"Link_Lookup_Incremental_properties_typeProperties_userId": {
+						"value": "[parameters('Link_Lookup_Incremental_properties_typeProperties_userId')]"
+					},
 					"metadatafile_properties_typeProperties_host": {
 						"value": "[parameters('metadatafile_properties_typeProperties_host')]"
 					},
@@ -258,6 +272,26 @@
 			},
 			"dependsOn": [
 				"[resourceId('Microsoft.Resources/deployments', 'jyo-project-df_ArmTemplate_1')]"
+			]
+		},
+		{
+			"name": "jyo-project-df_ArmTemplate_3",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_3.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'jyo-project-df_ArmTemplate_2')]"
 			]
 		}
 	]
