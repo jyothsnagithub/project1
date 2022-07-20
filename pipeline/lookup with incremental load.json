@@ -133,7 +133,25 @@
 							"outputs": [
 								{
 									"referenceName": "DelimitedText34",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"ContainerNameDataSet": {
+											"value": "@item().Development",
+											"type": "Expression"
+										},
+										"DirectoryDataset": {
+											"value": "@item().foldername",
+											"type": "Expression"
+										},
+										"ColDelimiter": {
+											"value": "@item().ColDelimiter",
+											"type": "Expression"
+										},
+										"RowDelimiter": {
+											"value": "@item().RowDelimeter",
+											"type": "Expression"
+										}
+									}
 								}
 							]
 						}
