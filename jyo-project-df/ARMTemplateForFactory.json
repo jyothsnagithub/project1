@@ -1151,6 +1151,10 @@
 										},
 										"sink": {
 											"type": "AzureSqlSink",
+											"preCopyScript": {
+												"value": "Truncate table \"@{item().StgTable}\"",
+												"type": "Expression"
+											},
 											"writeBehavior": "insert",
 											"sqlWriterUseTableLock": false,
 											"disableMetricsCollection": false
