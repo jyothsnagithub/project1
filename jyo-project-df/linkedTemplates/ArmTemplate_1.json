@@ -158,10 +158,6 @@
 						"value": "@dataset().ColDelimiter",
 						"type": "Expression"
 					},
-					"rowDelimiter": {
-						"value": "@dataset().RowDelimiter",
-						"type": "Expression"
-					},
 					"escapeChar": "\\",
 					"firstRowAsHeader": true,
 					"quoteChar": "\""
