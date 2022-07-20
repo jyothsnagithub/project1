@@ -3116,10 +3116,7 @@
 							"value": "@dataset().DirectoryDataset",
 							"type": "Expression"
 						},
-						"container": {
-							"value": "@dataset().ContainerNameDataSet",
-							"type": "Expression"
-						}
+						"container": "development"
 					},
 					"columnDelimiter": {
 						"value": "@dataset().ColDelimiter",
