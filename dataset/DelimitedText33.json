@@ -1,0 +1,59 @@
+{
+	"name": "DelimitedText33",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "FileServer7",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"hostnamelink": {
+					"value": "@dataset().HostnameDataset",
+					"type": "Expression"
+				},
+				"usernamelink": {
+					"value": "@dataset().UsernameDataset",
+					"type": "Expression"
+				}
+			}
+		},
+		"parameters": {
+			"HostnameDataset": {
+				"type": "string"
+			},
+			"UsernameDataset": {
+				"type": "string"
+			},
+			"FilenameDataSet": {
+				"type": "string"
+			},
+			"ColumnDelimiter": {
+				"type": "string"
+			},
+			"rowdelimiter": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "FileServerLocation",
+				"fileName": {
+					"value": "@dataset().FilenameDataSet",
+					"type": "Expression"
+				}
+			},
+			"columnDelimiter": {
+				"value": "@dataset().ColumnDelimiter",
+				"type": "Expression"
+			},
+			"rowDelimiter": {
+				"value": "@dataset().rowdelimiter",
+				"type": "Expression"
+			},
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
