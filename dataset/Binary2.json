@@ -1,0 +1,33 @@
+{
+	"name": "Binary2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage4",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"DirecoryDS": {
+				"type": "string"
+			},
+			"FileNameDS": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@dataset().FileNameDS",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().DirecoryDS",
+					"type": "Expression"
+				},
+				"container": "development"
+			}
+		}
+	}
+}

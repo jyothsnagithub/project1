@@ -1,0 +1,51 @@
+{
+	"name": "DelimitedText35",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage4",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"FileFolderDataSet": {
+				"type": "string"
+			},
+			"FilnemaDataSet": {
+				"type": "string"
+			},
+			"ColDelimiter": {
+				"type": "string"
+			},
+			"RowDelimiter": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@dataset().FilnemaDataSet",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().FileFolderDataSet",
+					"type": "Expression"
+				},
+				"container": "development"
+			},
+			"columnDelimiter": {
+				"value": "@dataset().ColDelimiter",
+				"type": "Expression"
+			},
+			"rowDelimiter": {
+				"value": "@dataset().RowDelimiter",
+				"type": "Expression"
+			},
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
