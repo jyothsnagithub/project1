@@ -222,6 +222,10 @@
 										"ColDelimiter": {
 											"value": "@item().ColDelimiter",
 											"type": "Expression"
+										},
+										"RowDelimiter": {
+											"value": "@item().RowDelimeter",
+											"type": "Expression"
 										}
 									}
 								}
