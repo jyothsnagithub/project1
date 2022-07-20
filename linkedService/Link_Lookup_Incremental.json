@@ -1,0 +1,28 @@
+{
+	"name": "Link_Lookup_Incremental",
+	"properties": {
+		"parameters": {
+			"username": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "FileServer",
+		"typeProperties": {
+			"host": "D:\\jyo\\azure data engineer\\data\\config_files_for_incre_load",
+			"userId": "@{linkedService().username}",
+			"password": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "AzureKeyVault1",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "onprimisepw"
+			}
+		},
+		"connectVia": {
+			"referenceName": "jyo-IR",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
