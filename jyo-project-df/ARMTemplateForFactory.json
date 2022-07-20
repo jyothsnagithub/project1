@@ -3417,10 +3417,7 @@
 						},
 						"container": "development"
 					},
-					"columnDelimiter": {
-						"value": "@dataset().ColDelimiter",
-						"type": "Expression"
-					},
+					"columnDelimiter": ",",
 					"escapeChar": "\\",
 					"firstRowAsHeader": true,
 					"quoteChar": "\""
