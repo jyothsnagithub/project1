@@ -1,0 +1,31 @@
+{
+	"name": "FileServer7",
+	"properties": {
+		"parameters": {
+			"hostnamelink": {
+				"type": "string"
+			},
+			"usernamelink": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "FileServer",
+		"typeProperties": {
+			"host": "@{linkedService().hostnamelink}",
+			"userId": "@{linkedService().usernamelink}",
+			"password": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "AzureKeyVault1",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "onprimisepw"
+			}
+		},
+		"connectVia": {
+			"referenceName": "jyo-IR",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
