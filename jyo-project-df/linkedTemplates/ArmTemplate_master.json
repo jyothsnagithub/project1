@@ -15,6 +15,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage3'"
 		},
+		"AzureBlobStorage4_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage4'"
+		},
 		"AzureSqlDatabase1_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase1'"
@@ -26,6 +30,10 @@
 		"AzureSqlDatabase3_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase3'"
+		},
+		"AzureSqlDatabase4_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase4'"
 		},
 		"FileServer2_password": {
 			"type": "secureString",
@@ -56,6 +64,10 @@
 			"defaultValue": "storageacconstr"
 		},
 		"AzureKeyVault1_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://jyokey.vault.azure.net/"
+		},
+		"AzureKeyVault2_properties_typeProperties_baseUrl": {
 			"type": "string",
 			"defaultValue": "https://jyokey.vault.azure.net/"
 		},
@@ -164,6 +176,9 @@
 					"AzureBlobStorage3_connectionString": {
 						"value": "[parameters('AzureBlobStorage3_connectionString')]"
 					},
+					"AzureBlobStorage4_connectionString": {
+						"value": "[parameters('AzureBlobStorage4_connectionString')]"
+					},
 					"AzureSqlDatabase1_connectionString": {
 						"value": "[parameters('AzureSqlDatabase1_connectionString')]"
 					},
@@ -173,26 +188,11 @@
 					"AzureSqlDatabase3_connectionString": {
 						"value": "[parameters('AzureSqlDatabase3_connectionString')]"
 					},
-					"FileServer2_password": {
-						"value": "[parameters('FileServer2_password')]"
-					},
 					"AzureKeyVault1_properties_typeProperties_baseUrl": {
 						"value": "[parameters('AzureKeyVault1_properties_typeProperties_baseUrl')]"
 					},
-					"AzureBlobStorage1_properties_typeProperties_connectionString_secretName": {
-						"value": "[parameters('AzureBlobStorage1_properties_typeProperties_connectionString_secretName')]"
-					},
-					"FileServer1_properties_typeProperties_host": {
-						"value": "[parameters('FileServer1_properties_typeProperties_host')]"
-					},
-					"FileServer1_properties_typeProperties_userId": {
-						"value": "[parameters('FileServer1_properties_typeProperties_userId')]"
-					},
-					"FileServer2_properties_typeProperties_host": {
-						"value": "[parameters('FileServer2_properties_typeProperties_host')]"
-					},
-					"FileServer2_properties_typeProperties_userId": {
-						"value": "[parameters('FileServer2_properties_typeProperties_userId')]"
+					"AzureKeyVault2_properties_typeProperties_baseUrl": {
+						"value": "[parameters('AzureKeyVault2_properties_typeProperties_baseUrl')]"
 					}
 				}
 			},
@@ -212,6 +212,12 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
+					"AzureSqlDatabase4_connectionString": {
+						"value": "[parameters('AzureSqlDatabase4_connectionString')]"
+					},
+					"FileServer2_password": {
+						"value": "[parameters('FileServer2_password')]"
+					},
 					"FileServer3_password": {
 						"value": "[parameters('FileServer3_password')]"
 					},
@@ -226,6 +232,21 @@
 					},
 					"metadatafile_password": {
 						"value": "[parameters('metadatafile_password')]"
+					},
+					"AzureBlobStorage1_properties_typeProperties_connectionString_secretName": {
+						"value": "[parameters('AzureBlobStorage1_properties_typeProperties_connectionString_secretName')]"
+					},
+					"FileServer1_properties_typeProperties_host": {
+						"value": "[parameters('FileServer1_properties_typeProperties_host')]"
+					},
+					"FileServer1_properties_typeProperties_userId": {
+						"value": "[parameters('FileServer1_properties_typeProperties_userId')]"
+					},
+					"FileServer2_properties_typeProperties_host": {
+						"value": "[parameters('FileServer2_properties_typeProperties_host')]"
+					},
+					"FileServer2_properties_typeProperties_userId": {
+						"value": "[parameters('FileServer2_properties_typeProperties_userId')]"
 					},
 					"FileServer3_properties_typeProperties_host": {
 						"value": "[parameters('FileServer3_properties_typeProperties_host')]"

@@ -11,6 +11,9 @@
 		"AzureBlobStorage3_connectionString": {
 			"value": ""
 		},
+		"AzureBlobStorage4_connectionString": {
+			"value": ""
+		},
 		"AzureSqlDatabase1_connectionString": {
 			"value": ""
 		},
@@ -18,6 +21,9 @@
 			"value": ""
 		},
 		"AzureSqlDatabase3_connectionString": {
+			"value": ""
+		},
+		"AzureSqlDatabase4_connectionString": {
 			"value": ""
 		},
 		"FileServer2_password": {
@@ -42,6 +48,9 @@
 			"value": "storageacconstr"
 		},
 		"AzureKeyVault1_properties_typeProperties_baseUrl": {
+			"value": "https://jyokey.vault.azure.net/"
+		},
+		"AzureKeyVault2_properties_typeProperties_baseUrl": {
 			"value": "https://jyokey.vault.azure.net/"
 		},
 		"FileServer1_properties_typeProperties_host": {
