@@ -24,9 +24,10 @@
 				"fileName": "config_files_for_incre_load.txt"
 			},
 			"columnDelimiter": "|",
-			"escapeChar": "",
+			"rowDelimiter": "\n",
+			"escapeChar": "\"",
 			"firstRowAsHeader": true,
-			"quoteChar": ""
+			"quoteChar": "\""
 		},
 		"schema": [
 			{
