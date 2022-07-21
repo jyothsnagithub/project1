@@ -23,7 +23,7 @@
 				"type": "FileServerLocation",
 				"fileName": "config_files_for_incre_load.txt"
 			},
-			"columnDelimiter": ",",
+			"columnDelimiter": "|",
 			"escapeChar": "\\",
 			"firstRowAsHeader": true,
 			"quoteChar": "\""
