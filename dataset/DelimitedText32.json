@@ -24,7 +24,7 @@
 				"fileName": "config_files_for_incre_load.txt"
 			},
 			"columnDelimiter": "|",
-			"escapeChar": "\\",
+			"escapeChar": "",
 			"firstRowAsHeader": true,
 			"quoteChar": "\""
 		},
