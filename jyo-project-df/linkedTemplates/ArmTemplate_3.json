@@ -1187,7 +1187,7 @@
 													"type": "Expression"
 												},
 												"RowDelimiter": {
-													"value": "@item().RowDelimeter",
+													"value": "\\n",
 													"type": "Expression"
 												}
 											}
