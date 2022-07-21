@@ -3421,10 +3421,7 @@
 						"value": "@dataset().ColDelimiter",
 						"type": "Expression"
 					},
-					"rowDelimiter": {
-						"value": "@dataset().RowDelimiter",
-						"type": "Expression"
-					},
+					"rowDelimiter": "\n",
 					"escapeChar": "\\",
 					"firstRowAsHeader": true,
 					"quoteChar": "\""
