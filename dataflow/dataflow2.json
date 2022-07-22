@@ -82,7 +82,7 @@
 				"     updateable:false,",
 				"     upsertable:false,",
 				"     format: 'table',",
-				"     staged: false,",
+				"     staged: true,",
 				"     errorHandlingOption: 'stopOnFirstError',",
 				"     mapColumn(",
 				"          Id = derived,",
