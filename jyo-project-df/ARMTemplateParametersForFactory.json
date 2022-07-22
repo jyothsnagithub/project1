@@ -26,6 +26,9 @@
 		"AzureSqlDatabase4_connectionString": {
 			"value": ""
 		},
+		"AzureSynapseAnalytics1_connectionString": {
+			"value": ""
+		},
 		"FileServer2_password": {
 			"value": ""
 		},
