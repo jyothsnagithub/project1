@@ -538,7 +538,8 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobStorageLocation",
-						"folderPath": "Sales",
+						"fileName": "totalsales.txt",
+						"folderPath": "Sales/Output",
 						"container": "development"
 					},
 					"columnDelimiter": ",",
