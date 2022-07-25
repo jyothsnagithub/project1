@@ -43,7 +43,7 @@
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "DelimitedText43",
+						"referenceName": "DelimitedText44",
 						"type": "DatasetReference"
 					},
 					"name": "sink1"
@@ -142,13 +142,15 @@
 				"aggregate1 sort(asc(EnglishProductCategoryName, true),",
 				"     asc(CalendarYear, true)) ~> sort1",
 				"sort1 sink(allowSchemaDrift: true,",
-				"     validateSchema: true,",
-				"     input(",
-				"          DateKey as string,",
-				"          CalendarYear as string",
+				"     validateSchema: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          EnglishProductCategoryName,",
+				"          CalendarYear,",
+				"          TotalSales",
 				"     ),",
-				"     partitionBy('hash', 1),",
-				"     format: 'table') ~> sink1"
+				"     partitionBy('hash', 1)) ~> sink1"
 			]
 		}
 	}
