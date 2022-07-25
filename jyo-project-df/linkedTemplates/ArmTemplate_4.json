@@ -13,6 +13,166 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/agregate groupby')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "FactInternetSales",
+								"type": "DatasetReference"
+							},
+							"name": "FactInternetSales"
+						},
+						{
+							"dataset": {
+								"referenceName": "DelimitedText39",
+								"type": "DatasetReference"
+							},
+							"name": "Product"
+						},
+						{
+							"dataset": {
+								"referenceName": "DelimitedText40",
+								"type": "DatasetReference"
+							},
+							"name": "ProductSubCategory"
+						},
+						{
+							"dataset": {
+								"referenceName": "DelimitedText41",
+								"type": "DatasetReference"
+							},
+							"name": "ProductCategory"
+						},
+						{
+							"dataset": {
+								"referenceName": "DelimitedText42",
+								"type": "DatasetReference"
+							},
+							"name": "Date"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "DelimitedText43",
+								"type": "DatasetReference"
+							},
+							"name": "sink1"
+						}
+					],
+					"transformations": [
+						{
+							"name": "FISProduct"
+						},
+						{
+							"name": "join1"
+						},
+						{
+							"name": "join2"
+						},
+						{
+							"name": "join3"
+						},
+						{
+							"name": "select1"
+						},
+						{
+							"name": "aggregate1"
+						},
+						{
+							"name": "sort1"
+						}
+					],
+					"scriptLines": [
+						"source(output(",
+						"          ProductKey as integer,",
+						"          SalesAmount as double,",
+						"          OrderDateKey as integer",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     ignoreNoFilesFound: false) ~> FactInternetSales",
+						"source(output(",
+						"          ProductKey as integer,",
+						"          ProductSubcategoryKey as integer",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     ignoreNoFilesFound: false) ~> Product",
+						"source(output(",
+						"          ProductCategoryKey as integer,",
+						"          ProductSubcategoryKey as integer",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     ignoreNoFilesFound: false) ~> ProductSubCategory",
+						"source(output(",
+						"          ProductCategoryKey as integer,",
+						"          EnglishProductCategoryName as string",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     ignoreNoFilesFound: false) ~> ProductCategory",
+						"source(output(",
+						"          DateKey as integer,",
+						"          CalendarYear as integer",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     ignoreNoFilesFound: false) ~> Date",
+						"FactInternetSales, Product join(FactInternetSales@ProductKey == Product@ProductKey,",
+						"     joinType:'inner',",
+						"     matchType:'exact',",
+						"     ignoreSpaces: false,",
+						"     broadcast: 'auto')~> FISProduct",
+						"FISProduct, ProductSubCategory join(Product@ProductSubcategoryKey == ProductSubCategory@ProductSubcategoryKey,",
+						"     joinType:'inner',",
+						"     matchType:'exact',",
+						"     ignoreSpaces: false,",
+						"     broadcast: 'auto')~> join1",
+						"join1, ProductCategory join(ProductSubCategory@ProductCategoryKey == ProductCategory@ProductCategoryKey,",
+						"     joinType:'inner',",
+						"     matchType:'exact',",
+						"     ignoreSpaces: false,",
+						"     broadcast: 'auto')~> join2",
+						"join2, Date join(OrderDateKey == DateKey,",
+						"     joinType:'inner',",
+						"     matchType:'exact',",
+						"     ignoreSpaces: false,",
+						"     broadcast: 'auto')~> join3",
+						"join3 select(mapColumn(",
+						"          SalesAmount,",
+						"          EnglishProductCategoryName,",
+						"          CalendarYear",
+						"     ),",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true) ~> select1",
+						"select1 aggregate(groupBy(EnglishProductCategoryName,",
+						"          CalendarYear),",
+						"     TotalSales = sum(SalesAmount)) ~> aggregate1",
+						"aggregate1 sort(asc(EnglishProductCategoryName, true),",
+						"     asc(CalendarYear, true)) ~> sort1",
+						"sort1 sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     input(",
+						"          DateKey as string,",
+						"          CalendarYear as string",
+						"     ),",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true,",
+						"     partitionBy('hash', 1),",
+						"     format: 'table') ~> sink1"
+					]
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/dataflow1')]",
 			"type": "Microsoft.DataFactory/factories/dataflows",
 			"apiVersion": "2018-06-01",
@@ -210,7 +370,9 @@
 				},
 				"annotations": []
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/dataflows/agregate groupby')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/copy_onprimise_staccount_sqldatabase_stg_emp_storedproc')]",

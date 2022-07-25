@@ -3981,6 +3981,43 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/DelimitedText43')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Storage_Ac_adfscjyo",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"folderPath": "Sales",
+						"container": "development"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "DateKey",
+						"type": "String"
+					},
+					{
+						"name": "CalendarYear",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Storage_Ac_adfscjyo')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/DelimitedText5')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -4676,7 +4713,7 @@
 					"sinks": [
 						{
 							"dataset": {
-								"referenceName": "AzureSqlTable9",
+								"referenceName": "DelimitedText43",
 								"type": "DatasetReference"
 							},
 							"name": "sink1"
@@ -4777,23 +4814,13 @@
 						"sort1 sink(allowSchemaDrift: true,",
 						"     validateSchema: false,",
 						"     input(",
-						"          EnglishProductCategoryName as string,",
-						"          CalendarYear as integer,",
-						"          TotaSalesAmmount as decimal(38,12)",
+						"          DateKey as string,",
+						"          CalendarYear as string",
 						"     ),",
-						"     deletable:false,",
-						"     insertable:true,",
-						"     updateable:false,",
-						"     upsertable:false,",
-						"     format: 'table',",
 						"     skipDuplicateMapInputs: true,",
 						"     skipDuplicateMapOutputs: true,",
-						"     errorHandlingOption: 'stopOnFirstError',",
-						"     mapColumn(",
-						"          EnglishProductCategoryName,",
-						"          CalendarYear,",
-						"          TotaSalesAmmount = TotalSales",
-						"     )) ~> sink1"
+						"     partitionBy('hash', 1),",
+						"     format: 'table') ~> sink1"
 					]
 				}
 			},
@@ -4803,7 +4830,7 @@
 				"[concat(variables('factoryId'), '/datasets/DelimitedText40')]",
 				"[concat(variables('factoryId'), '/datasets/DelimitedText41')]",
 				"[concat(variables('factoryId'), '/datasets/DelimitedText42')]",
-				"[concat(variables('factoryId'), '/datasets/AzureSqlTable9')]"
+				"[concat(variables('factoryId'), '/datasets/DelimitedText43')]"
 			]
 		},
 		{
