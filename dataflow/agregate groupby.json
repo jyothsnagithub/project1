@@ -43,7 +43,7 @@
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "AzureSqlTable9",
+						"referenceName": "DelimitedText43",
 						"type": "DatasetReference"
 					},
 					"name": "sink1"
@@ -144,23 +144,13 @@
 				"sort1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
-				"          EnglishProductCategoryName as string,",
-				"          CalendarYear as integer,",
-				"          TotaSalesAmmount as decimal(38,12)",
+				"          DateKey as string,",
+				"          CalendarYear as string",
 				"     ),",
-				"     deletable:false,",
-				"     insertable:true,",
-				"     updateable:false,",
-				"     upsertable:false,",
-				"     format: 'table',",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     errorHandlingOption: 'stopOnFirstError',",
-				"     mapColumn(",
-				"          EnglishProductCategoryName,",
-				"          CalendarYear,",
-				"          TotaSalesAmmount = TotalSales",
-				"     )) ~> sink1"
+				"     partitionBy('hash', 1),",
+				"     format: 'table') ~> sink1"
 			]
 		}
 	}
