@@ -7,6 +7,10 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "jyo-project-df"
 		},
+		"FileServer2_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'FileServer2'"
+		},
 		"FileServer3_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'FileServer3'"
@@ -26,6 +30,14 @@
 		"metadatafile_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'metadatafile'"
+		},
+		"FileServer2_properties_typeProperties_host": {
+			"type": "string",
+			"defaultValue": "D:\\jyo\\azure data engineer\\data"
+		},
+		"FileServer2_properties_typeProperties_userId": {
+			"type": "string",
+			"defaultValue": "DESKTOP-FF8CP36"
 		},
 		"FileServer3_properties_typeProperties_host": {
 			"type": "string",
@@ -88,6 +100,28 @@
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/FileServer2')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "FileServer",
+				"typeProperties": {
+					"host": "[parameters('FileServer2_properties_typeProperties_host')]",
+					"userId": "[parameters('FileServer2_properties_typeProperties_userId')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('FileServer2_password')]"
+					}
+				},
+				"connectVia": {
+					"referenceName": "jyo-IR",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/FileServer3')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
@@ -615,32 +649,6 @@
 					"location": {
 						"type": "AzureBlobStorageLocation",
 						"folderPath": "filefolder/files",
-						"container": "development"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DelimitedText20')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"folderPath": "filefolder",
 						"container": "development"
 					},
 					"columnDelimiter": ",",

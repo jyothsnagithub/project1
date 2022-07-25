@@ -4019,6 +4019,35 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/DelimitedText44')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Storage_Ac_adfscjyo",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "totalsales.txt",
+						"folderPath": "Sales/Output",
+						"container": "development"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Storage_Ac_adfscjyo')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/DelimitedText5')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -4714,7 +4743,7 @@
 					"sinks": [
 						{
 							"dataset": {
-								"referenceName": "DelimitedText43",
+								"referenceName": "DelimitedText44",
 								"type": "DatasetReference"
 							},
 							"name": "sink1"
@@ -4813,13 +4842,15 @@
 						"aggregate1 sort(asc(EnglishProductCategoryName, true),",
 						"     asc(CalendarYear, true)) ~> sort1",
 						"sort1 sink(allowSchemaDrift: true,",
-						"     validateSchema: true,",
-						"     input(",
-						"          DateKey as string,",
-						"          CalendarYear as string",
+						"     validateSchema: false,",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true,",
+						"     mapColumn(",
+						"          EnglishProductCategoryName,",
+						"          CalendarYear,",
+						"          TotalSales",
 						"     ),",
-						"     partitionBy('hash', 1),",
-						"     format: 'table') ~> sink1"
+						"     partitionBy('hash', 1)) ~> sink1"
 					]
 				}
 			},
@@ -4829,7 +4860,7 @@
 				"[concat(variables('factoryId'), '/datasets/DelimitedText40')]",
 				"[concat(variables('factoryId'), '/datasets/DelimitedText41')]",
 				"[concat(variables('factoryId'), '/datasets/DelimitedText42')]",
-				"[concat(variables('factoryId'), '/datasets/DelimitedText43')]"
+				"[concat(variables('factoryId'), '/datasets/DelimitedText44')]"
 			]
 		},
 		{

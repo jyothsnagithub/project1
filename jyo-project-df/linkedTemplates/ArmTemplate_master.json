@@ -236,9 +236,6 @@
 					"AzureSqlDatabase4_connectionString": {
 						"value": "[parameters('AzureSqlDatabase4_connectionString')]"
 					},
-					"FileServer2_password": {
-						"value": "[parameters('FileServer2_password')]"
-					},
 					"AzureBlobStorage1_properties_typeProperties_connectionString_secretName": {
 						"value": "[parameters('AzureBlobStorage1_properties_typeProperties_connectionString_secretName')]"
 					},
@@ -247,12 +244,6 @@
 					},
 					"FileServer1_properties_typeProperties_userId": {
 						"value": "[parameters('FileServer1_properties_typeProperties_userId')]"
-					},
-					"FileServer2_properties_typeProperties_host": {
-						"value": "[parameters('FileServer2_properties_typeProperties_host')]"
-					},
-					"FileServer2_properties_typeProperties_userId": {
-						"value": "[parameters('FileServer2_properties_typeProperties_userId')]"
 					}
 				}
 			},
@@ -274,6 +265,9 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
+					"FileServer2_password": {
+						"value": "[parameters('FileServer2_password')]"
+					},
 					"FileServer3_password": {
 						"value": "[parameters('FileServer3_password')]"
 					},
@@ -288,6 +282,12 @@
 					},
 					"metadatafile_password": {
 						"value": "[parameters('metadatafile_password')]"
+					},
+					"FileServer2_properties_typeProperties_host": {
+						"value": "[parameters('FileServer2_properties_typeProperties_host')]"
+					},
+					"FileServer2_properties_typeProperties_userId": {
+						"value": "[parameters('FileServer2_properties_typeProperties_userId')]"
 					},
 					"FileServer3_properties_typeProperties_host": {
 						"value": "[parameters('FileServer3_properties_typeProperties_host')]"
