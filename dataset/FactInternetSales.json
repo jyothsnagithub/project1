@@ -1,0 +1,37 @@
+{
+	"name": "FactInternetSales",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Storage_Ac_adfscjyo",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "FactInternetSales.csv",
+				"folderPath": "Sales",
+				"container": "development"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "ProductKey",
+				"type": "String"
+			},
+			{
+				"name": "SalesAmount",
+				"type": "String"
+			},
+			{
+				"name": "OrderDateKey",
+				"type": "String"
+			}
+		]
+	}
+}

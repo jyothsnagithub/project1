@@ -1,0 +1,32 @@
+{
+	"name": "AzureSqlTable9",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SQL_ADFDemo",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "EnglishProductCategoryName",
+				"type": "varchar"
+			},
+			{
+				"name": "CalendarYear",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TotaSalesAmmount",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 12
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "TotalSales"
+		}
+	}
+}
