@@ -44,6 +44,12 @@
 		"FileServer6_password": {
 			"value": ""
 		},
+		"SQL_ADFDemo_connectionString": {
+			"value": ""
+		},
+		"Storage_Ac_adfscjyo_connectionString": {
+			"value": ""
+		},
 		"metadatafile_password": {
 			"value": ""
 		},
