@@ -141,14 +141,12 @@
 				"     TotalSales = sum(SalesAmount)) ~> aggregate1",
 				"aggregate1 sort(asc(EnglishProductCategoryName, true),",
 				"     asc(CalendarYear, true)) ~> sort1",
-				"sort1 sink(allowSchemaDrift: true,",
+				"sort1 sink(allowSchemaDrift: false,",
 				"     validateSchema: false,",
 				"     input(",
 				"          DateKey as string,",
 				"          CalendarYear as string",
 				"     ),",
-				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true,",
 				"     partitionBy('hash', 1),",
 				"     format: 'table') ~> sink1"
 			]
