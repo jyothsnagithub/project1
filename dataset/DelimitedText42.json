@@ -25,6 +25,10 @@
 				"type": "String"
 			},
 			{
+				"name": "EnglishMonthName",
+				"type": "String"
+			},
+			{
 				"name": "CalendarYear",
 				"type": "String"
 			}
