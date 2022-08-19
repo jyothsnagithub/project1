@@ -220,7 +220,7 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"opp": {
-								"value": "@pipeline().globalParameters.onprimiseusername",
+								"value": "@pipeline().globalParameters.OnprimiseUserName",
 								"type": "Expression"
 							}
 						}
