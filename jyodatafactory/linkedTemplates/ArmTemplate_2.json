@@ -433,7 +433,7 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobFSLocation",
-						"fileName": "NorwayCarSales.csv",
+						"fileName": "NorwayCarSales1.csv",
 						"folderPath": "sales",
 						"fileSystem": "development"
 					},
