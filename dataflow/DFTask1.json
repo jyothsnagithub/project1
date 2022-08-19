@@ -6,10 +6,17 @@
 			"sources": [
 				{
 					"dataset": {
-						"referenceName": "DelimitedText46",
+						"referenceName": "DelimitedText47",
 						"type": "DatasetReference"
 					},
 					"name": "source1"
+				},
+				{
+					"dataset": {
+						"referenceName": "DelimitedText48",
+						"type": "DatasetReference"
+					},
+					"name": "source2"
 				}
 			],
 			"sinks": [
@@ -71,13 +78,23 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> source1",
+				"source(output(",
+				"          Year as string,",
+				"          Month as string,",
+				"          Make as string,",
+				"          Quantity as string,",
+				"          Pct as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source2",
 				"source1 select(mapColumn(",
 				"          Year,",
 				"          Month",
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> select1",
-				"source1 select(mapColumn(",
+				"source2 select(mapColumn(",
 				"          Make",
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
