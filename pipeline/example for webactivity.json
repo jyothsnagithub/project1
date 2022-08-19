@@ -268,7 +268,7 @@
 					"sink": {
 						"type": "DelimitedTextSink",
 						"storeSettings": {
-							"type": "AzureBlobStorageWriteSettings"
+							"type": "FileServerWriteSettings"
 						},
 						"formatSettings": {
 							"type": "DelimitedTextWriteSettings",
