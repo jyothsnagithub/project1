@@ -10,9 +10,6 @@
 						"type": "DatasetReference"
 					},
 					"name": "source1"
-				},
-				{
-					"name": "source2"
 				}
 			],
 			"sinks": [
@@ -61,12 +58,6 @@
 				},
 				{
 					"name": "select4"
-				},
-				{
-					"name": "sort1"
-				},
-				{
-					"name": "sort2"
 				}
 			],
 			"scriptLines": [
@@ -80,8 +71,6 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> source1",
-				"source(allowSchemaDrift: true,",
-				"     validateSchema: false) ~> source2",
 				"source1 select(mapColumn(",
 				"          Year,",
 				"          Month",
@@ -121,9 +110,7 @@
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> select4",
-				"select4 sort(asc(Bran_ID, true)) ~> sort1",
-				"select3 sort(asc(DateKey, true)) ~> sort2",
-				"sort2 sink(allowSchemaDrift: true,",
+				"select3 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
 				"          DateKey as integer,",
@@ -144,7 +131,7 @@
 				"          Year,",
 				"          Month",
 				"     )) ~> sink1",
-				"sort1 sink(allowSchemaDrift: true,",
+				"select4 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
 				"          Bran_ID as integer,",
@@ -158,7 +145,11 @@
 				"     preSQLs:['truncate table salesDate'],",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     errorHandlingOption: 'stopOnFirstError') ~> sink2"
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     mapColumn(",
+				"          Bran_ID,",
+				"          Make",
+				"     )) ~> sink2"
 			]
 		}
 	}
