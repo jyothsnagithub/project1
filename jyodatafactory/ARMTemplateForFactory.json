@@ -4954,8 +4954,8 @@
 					],
 					"scriptLines": [
 						"source(output(",
-						"          Year as string,",
-						"          Month as string,",
+						"          Year as integer,",
+						"          Month as integer,",
 						"          Make as string,",
 						"          Quantity as string,",
 						"          Pct as string",
