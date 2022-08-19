@@ -58,6 +58,12 @@
 				},
 				{
 					"name": "select4"
+				},
+				{
+					"name": "sort1"
+				},
+				{
+					"name": "sort2"
 				}
 			],
 			"scriptLines": [
@@ -110,7 +116,9 @@
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> select4",
-				"select3 sink(allowSchemaDrift: true,",
+				"select4 sort(asc(Bran_ID, true)) ~> sort1",
+				"select3 sort(asc(DateKey, true)) ~> sort2",
+				"sort2 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
 				"          DateKey as integer,",
@@ -122,10 +130,11 @@
 				"     updateable:false,",
 				"     upsertable:false,",
 				"     format: 'table',",
+				"     preSQLs:['truncate table SalesBrand'],",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
 				"     errorHandlingOption: 'stopOnFirstError') ~> sink1",
-				"select4 sink(allowSchemaDrift: true,",
+				"sort1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
 				"          Bran_ID as integer,",
@@ -136,6 +145,7 @@
 				"     updateable:false,",
 				"     upsertable:false,",
 				"     format: 'table',",
+				"     preSQLs:['truncate table salesDate'],",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
 				"     errorHandlingOption: 'stopOnFirstError') ~> sink2"
