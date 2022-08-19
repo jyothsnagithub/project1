@@ -135,7 +135,6 @@
 						"storeSettings": {
 							"type": "FileServerReadSettings",
 							"recursive": true,
-							"wildcardFolderPath": "D:\\jyo\\azure data engineer\\data",
 							"wildcardFileName": "*.txt",
 							"enablePartitionDiscovery": false
 						},
