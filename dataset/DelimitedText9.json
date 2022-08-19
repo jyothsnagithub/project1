@@ -2,7 +2,7 @@
 	"name": "DelimitedText9",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "AzureBlobStorage1",
+			"referenceName": "StoAc",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
@@ -10,15 +10,28 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"folderPath": "filefolder/files",
+				"fileName": "customer.txt",
 				"container": "development"
 			},
-			"columnDelimiter": "|",
+			"columnDelimiter": ",",
 			"escapeChar": "\\",
 			"firstRowAsHeader": true,
-			"quoteChar": ""
+			"quoteChar": "\""
 		},
-		"schema": []
+		"schema": [
+			{
+				"name": "Cust_Id",
+				"type": "String"
+			},
+			{
+				"name": "Cust_Name",
+				"type": "String"
+			},
+			{
+				"name": "Sales",
+				"type": "String"
+			}
+		]
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"
 }

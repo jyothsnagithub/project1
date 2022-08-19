@@ -2,23 +2,34 @@
 	"name": "DelimitedText5",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "FileServer1",
+			"referenceName": "StoAc",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
-				"type": "FileServerLocation",
-				"fileName": "emp1.txt"
+				"type": "AzureBlobStorageLocation",
+				"fileName": "DimDate.csv",
+				"folderPath": "salesFiles/DataFiles",
+				"container": "development"
 			},
-			"columnDelimiter": "|",
+			"columnDelimiter": ",",
 			"escapeChar": "\\",
 			"firstRowAsHeader": true,
 			"quoteChar": "\""
 		},
 		"schema": [
 			{
+				"name": "DateKey",
+				"type": "String"
+			},
+			{
+				"name": "EnglishMonthName",
+				"type": "String"
+			},
+			{
+				"name": "CalendarYear",
 				"type": "String"
 			}
 		]

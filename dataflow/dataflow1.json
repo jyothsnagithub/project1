@@ -6,16 +6,44 @@
 			"sources": [
 				{
 					"dataset": {
-						"referenceName": "DelimitedText36",
+						"referenceName": "DelimitedText1",
 						"type": "DatasetReference"
 					},
-					"name": "source1"
+					"name": "FactInternetSales"
+				},
+				{
+					"dataset": {
+						"referenceName": "DelimitedText2",
+						"type": "DatasetReference"
+					},
+					"name": "Product"
+				},
+				{
+					"dataset": {
+						"referenceName": "DelimitedText3",
+						"type": "DatasetReference"
+					},
+					"name": "ProductCatogery"
+				},
+				{
+					"dataset": {
+						"referenceName": "DelimitedText4",
+						"type": "DatasetReference"
+					},
+					"name": "ProductSubCategory"
+				},
+				{
+					"dataset": {
+						"referenceName": "DelimitedText5",
+						"type": "DatasetReference"
+					},
+					"name": "Date"
 				}
 			],
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "DelimitedText37",
+						"referenceName": "AzureSqlTable2",
 						"type": "DatasetReference"
 					},
 					"name": "sink1"
@@ -23,25 +51,126 @@
 			],
 			"transformations": [
 				{
-					"name": "derivedColumn1"
+					"name": "join1"
+				},
+				{
+					"name": "join2"
+				},
+				{
+					"name": "join3"
+				},
+				{
+					"name": "join4"
+				},
+				{
+					"name": "select1"
+				},
+				{
+					"name": "aggregate1"
+				},
+				{
+					"name": "window1"
 				}
 			],
 			"scriptLines": [
 				"source(output(",
-				"          emp_id as short,",
-				"          emp_name as string,",
-				"          emp_sal as short,",
-				"          dept_id as short",
+				"          ProductKey as integer,",
+				"          SalesAmount as double,",
+				"          OrderDateKey as integer",
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> source1",
-				"source1 derive(increment = iif(dept_id==10,emp_sal*10/100,0)) ~> derivedColumn1",
-				"derivedColumn1 sink(allowSchemaDrift: true,",
+				"     ignoreNoFilesFound: false) ~> FactInternetSales",
+				"source(output(",
+				"          ProductKey as integer,",
+				"          ProductSubcategoryKey as integer",
+				"     ),",
+				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     partitionFileNames:['dataflow.txt'],",
+				"     ignoreNoFilesFound: false) ~> Product",
+				"source(output(",
+				"          ProductCategoryKey as integer,",
+				"          EnglishProductCategoryName as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> ProductCatogery",
+				"source(output(",
+				"          ProductCategoryKey as integer,",
+				"          ProductSubcategoryKey as integer",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> ProductSubCategory",
+				"source(output(",
+				"          DateKey as integer,",
+				"          EnglishMonthName as string,",
+				"          CalendarYear as integer",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> Date",
+				"FactInternetSales, Product join(FactInternetSales@ProductKey == Product@ProductKey,",
+				"     joinType:'inner',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> join1",
+				"join1, ProductSubCategory join(Product@ProductSubcategoryKey == ProductSubCategory@ProductSubcategoryKey,",
+				"     joinType:'inner',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> join2",
+				"join2, ProductCatogery join(ProductSubCategory@ProductCategoryKey == ProductCatogery@ProductCategoryKey,",
+				"     joinType:'inner',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> join3",
+				"join3, Date join(OrderDateKey == DateKey,",
+				"     joinType:'inner',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> join4",
+				"join4 select(mapColumn(",
+				"          SalesAmount,",
+				"          EnglishProductCategoryName,",
+				"          EnglishMonthName,",
+				"          CalendarYear",
+				"     ),",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> sink1"
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"select1 aggregate(groupBy(CalendarYear,",
+				"          EnglishProductCategoryName,",
+				"          EnglishMonthName),",
+				"     TotalSales = sum(SalesAmount)) ~> aggregate1",
+				"aggregate1 window(over(CalendarYear,",
+				"          EnglishProductCategoryName),",
+				"     desc(TotalSales, true),",
+				"     Rnk = rank()) ~> window1",
+				"window1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          CalendarYear as integer,",
+				"          EnglishProductCategoryName as string,",
+				"          EnglishMonthName as string,",
+				"          TotalSales as decimal(20,12),",
+				"          Rnk as integer",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     preSQLs:['truncate table sales_outpt'],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     mapColumn(",
+				"          CalendarYear,",
+				"          EnglishProductCategoryName,",
+				"          EnglishMonthName,",
+				"          TotalSales,",
+				"          Rnk",
+				"     )) ~> sink1"
 			]
 		}
 	}

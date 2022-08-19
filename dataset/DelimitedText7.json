@@ -2,7 +2,7 @@
 	"name": "DelimitedText7",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "AzureBlobStorage1",
+			"referenceName": "StoAc",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
@@ -10,13 +10,14 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"folderPath": "filefolder/files",
+				"fileName": "OutPut.txt",
+				"folderPath": "salesFiles",
 				"container": "development"
 			},
-			"columnDelimiter": "|",
+			"columnDelimiter": ",",
 			"escapeChar": "\\",
 			"firstRowAsHeader": true,
-			"quoteChar": ""
+			"quoteChar": "\""
 		},
 		"schema": []
 	},

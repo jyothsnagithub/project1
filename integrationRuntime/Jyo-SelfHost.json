@@ -1,0 +1,6 @@
+{
+	"name": "Jyo-SelfHost",
+	"properties": {
+		"type": "SelfHosted"
+	}
+}

@@ -2,7 +2,7 @@
 	"name": "DelimitedText8",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "AzureBlobStorage1",
+			"referenceName": "StoAc",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
@@ -10,7 +10,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "emp1.txt",
+				"fileName": "config_files_for_incre_load.txt",
+				"folderPath": "ConfigFile",
 				"container": "development"
 			},
 			"columnDelimiter": "|",
@@ -18,7 +19,44 @@
 			"firstRowAsHeader": true,
 			"quoteChar": "\""
 		},
-		"schema": []
+		"schema": [
+			{
+				"name": "HostName",
+				"type": "String"
+			},
+			{
+				"name": "UserName",
+				"type": "String"
+			},
+			{
+				"name": "ContainerName",
+				"type": "String"
+			},
+			{
+				"name": "foldername",
+				"type": "String"
+			},
+			{
+				"name": "FileName",
+				"type": "String"
+			},
+			{
+				"name": "ColDelimiter",
+				"type": "String"
+			},
+			{
+				"name": "RowDelimeter",
+				"type": "String"
+			},
+			{
+				"name": "StgTable",
+				"type": "String"
+			},
+			{
+				"name": "StoredProcedure",
+				"type": "String"
+			}
+		]
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"
 }

@@ -1,0 +1,9 @@
+{
+	"name": "jyodatafactory",
+	"location": "eastus2",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "39453b09-5001-489b-9cdc-ce0abfa0f5d2",
+		"tenantId": "953bea76-68c1-492d-b206-8c8a8b05fca5"
+	}
+}

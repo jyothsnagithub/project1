@@ -2,7 +2,7 @@
 	"name": "DelimitedText1",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "AzureBlobStorage1",
+			"referenceName": "StoAc",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
@@ -10,18 +10,26 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "emp1.txt",
-				"folderPath": "filefolder/files",
+				"fileName": "FactInternetSales.csv",
+				"folderPath": "salesFiles/DataFiles",
 				"container": "development"
 			},
-			"columnDelimiter": "|",
+			"columnDelimiter": ",",
 			"escapeChar": "\\",
 			"firstRowAsHeader": true,
 			"quoteChar": "\""
 		},
 		"schema": [
 			{
-				"name": "Id|name|sal|dno",
+				"name": "ProductKey",
+				"type": "String"
+			},
+			{
+				"name": "SalesAmount",
+				"type": "String"
+			},
+			{
+				"name": "OrderDateKey",
 				"type": "String"
 			}
 		]

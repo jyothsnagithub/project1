@@ -2,36 +2,40 @@
 	"name": "AzureSqlTable2",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "AzureSqlDatabase1",
+			"referenceName": "AzureSqlServer",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
 		"type": "AzureSqlTable",
 		"schema": [
 			{
-				"name": "emp_id",
+				"name": "CalendarYear",
 				"type": "int",
 				"precision": 10
 			},
 			{
-				"name": "emp_name",
+				"name": "EnglishProductCategoryName",
 				"type": "varchar"
 			},
 			{
-				"name": "emp_sal",
-				"type": "decimal",
-				"precision": 12,
-				"scale": 2
+				"name": "EnglishMonthName",
+				"type": "varchar"
 			},
 			{
-				"name": "dept_id",
+				"name": "TotalSales",
+				"type": "decimal",
+				"precision": 20,
+				"scale": 12
+			},
+			{
+				"name": "Rnk",
 				"type": "int",
 				"precision": 10
 			}
 		],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "emp_adf"
+			"table": "Sales_outpt"
 		}
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"

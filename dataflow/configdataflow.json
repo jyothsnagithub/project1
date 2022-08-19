@@ -1,0 +1,76 @@
+{
+	"name": "configdataflow",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DelimitedText8",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "AzureSqlTable3",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [],
+			"scriptLines": [
+				"source(output(",
+				"          HostName as string,",
+				"          UserName as string,",
+				"          ContainerName as string,",
+				"          foldername as string,",
+				"          FileName as string,",
+				"          ColDelimiter as string,",
+				"          RowDelimeter as string,",
+				"          StgTable as string,",
+				"          StoredProcedure as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          HostName as string,",
+				"          UserName as string,",
+				"          ContainerName as string,",
+				"          foldername as string,",
+				"          FileName as string,",
+				"          ColDelimiter as string,",
+				"          RowDelimeter as string,",
+				"          StgTable as string,",
+				"          StoredProcedure as string",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     preSQLs:['truncate table config'],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     mapColumn(",
+				"          HostName,",
+				"          UserName,",
+				"          ContainerName,",
+				"          foldername,",
+				"          FileName,",
+				"          ColDelimiter,",
+				"          RowDelimeter,",
+				"          StgTable,",
+				"          StoredProcedure",
+				"     )) ~> sink1"
+			]
+		}
+	}
+}

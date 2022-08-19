@@ -2,36 +2,30 @@
 	"name": "AzureSqlTable5",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "AzureSqlDatabase2",
+			"referenceName": "AzureSqlServer",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
 		"type": "AzureSqlTable",
 		"schema": [
 			{
-				"name": "emp_id",
+				"name": "Cust_Id",
 				"type": "int",
 				"precision": 10
 			},
 			{
-				"name": "emp_name",
+				"name": "Cust_Name",
 				"type": "varchar"
 			},
 			{
-				"name": "emp_sal",
-				"type": "decimal",
-				"precision": 12,
-				"scale": 2
-			},
-			{
-				"name": "dept_id",
+				"name": "Sales",
 				"type": "int",
 				"precision": 10
 			}
 		],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "incload_emp_adf"
+			"table": "Customer"
 		}
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"
