@@ -1,0 +1,26 @@
+{
+	"name": "AzureSqlTable11",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlServer",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Bran_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Make",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "SalesBrand"
+		}
+	}
+}

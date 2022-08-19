@@ -1,0 +1,32 @@
+{
+	"name": "AzureSqlTable10",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlServer",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "DateKey",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Year",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Month",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "SalesDate"
+		}
+	}
+}
