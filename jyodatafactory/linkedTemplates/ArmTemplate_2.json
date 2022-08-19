@@ -19,10 +19,6 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'FileServer3'"
 		},
-		"FileServer4_password": {
-			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'FileServer4'"
-		},
 		"AzureBlobStorage1_properties_typeProperties_connectionString_secretName": {
 			"type": "string",
 			"defaultValue": "storageacconstr"
@@ -48,14 +44,6 @@
 			"defaultValue": "D:\\jyo\\azure data engineer\\configfiles"
 		},
 		"FileServer3_properties_typeProperties_userId": {
-			"type": "string",
-			"defaultValue": "desktop-ff8cp36\\dell"
-		},
-		"FileServer4_properties_typeProperties_host": {
-			"type": "string",
-			"defaultValue": "D:\\jyo\\azure data engineer\\data"
-		},
-		"FileServer4_properties_typeProperties_userId": {
 			"type": "string",
 			"defaultValue": "desktop-ff8cp36\\dell"
 		}
@@ -313,6 +301,54 @@
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/DelimitedText45')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "DataLakeStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "NorwayCarSales.csv",
+						"folderPath": "sales",
+						"fileSystem": "development"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "Year",
+						"type": "String"
+					},
+					{
+						"name": "Month",
+						"type": "String"
+					},
+					{
+						"name": "Make",
+						"type": "String"
+					},
+					{
+						"name": "Quantity",
+						"type": "String"
+					},
+					{
+						"name": "Pct",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DelimitedText46')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -750,28 +786,6 @@
 					"password": {
 						"type": "SecureString",
 						"value": "[parameters('FileServer3_password')]"
-					}
-				},
-				"connectVia": {
-					"referenceName": "jyo-IR",
-					"type": "IntegrationRuntimeReference"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/FileServer4')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "FileServer",
-				"typeProperties": {
-					"host": "[parameters('FileServer4_properties_typeProperties_host')]",
-					"userId": "[parameters('FileServer4_properties_typeProperties_userId')]",
-					"password": {
-						"type": "SecureString",
-						"value": "[parameters('FileServer4_password')]"
 					}
 				},
 				"connectVia": {

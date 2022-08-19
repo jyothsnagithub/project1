@@ -3670,6 +3670,56 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/DelimitedText46')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "DataLakeStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "NorwayCarSales.csv",
+						"folderPath": "sales",
+						"fileSystem": "development"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "Year",
+						"type": "String"
+					},
+					{
+						"name": "Month",
+						"type": "String"
+					},
+					{
+						"name": "Make",
+						"type": "String"
+					},
+					{
+						"name": "Quantity",
+						"type": "String"
+					},
+					{
+						"name": "Pct",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/DataLakeStorage')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/DelimitedText5')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -4740,7 +4790,7 @@
 					"sources": [
 						{
 							"dataset": {
-								"referenceName": "DelimitedText45",
+								"referenceName": "DelimitedText46",
 								"type": "DatasetReference"
 							},
 							"name": "source1"
@@ -4802,11 +4852,11 @@
 					],
 					"scriptLines": [
 						"source(output(",
-						"          Year as integer,",
-						"          Month as integer,",
+						"          Year as string,",
+						"          Month as string,",
 						"          Make as string,",
-						"          Quantity as integer,",
-						"          Pct as double",
+						"          Quantity as string,",
+						"          Pct as string",
 						"     ),",
 						"     allowSchemaDrift: true,",
 						"     validateSchema: false,",
@@ -4892,7 +4942,7 @@
 				}
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/DelimitedText45')]",
+				"[concat(variables('factoryId'), '/datasets/DelimitedText46')]",
 				"[concat(variables('factoryId'), '/datasets/AzureSqlTable10')]",
 				"[concat(variables('factoryId'), '/datasets/AzureSqlTable11')]"
 			]

@@ -321,9 +321,6 @@
 					"FileServer3_password": {
 						"value": "[parameters('FileServer3_password')]"
 					},
-					"FileServer4_password": {
-						"value": "[parameters('FileServer4_password')]"
-					},
 					"AzureBlobStorage1_properties_typeProperties_connectionString_secretName": {
 						"value": "[parameters('AzureBlobStorage1_properties_typeProperties_connectionString_secretName')]"
 					},
@@ -344,12 +341,6 @@
 					},
 					"FileServer3_properties_typeProperties_userId": {
 						"value": "[parameters('FileServer3_properties_typeProperties_userId')]"
-					},
-					"FileServer4_properties_typeProperties_host": {
-						"value": "[parameters('FileServer4_properties_typeProperties_host')]"
-					},
-					"FileServer4_properties_typeProperties_userId": {
-						"value": "[parameters('FileServer4_properties_typeProperties_userId')]"
 					}
 				}
 			},
@@ -371,6 +362,9 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
+					"FileServer4_password": {
+						"value": "[parameters('FileServer4_password')]"
+					},
 					"FileServer5_password": {
 						"value": "[parameters('FileServer5_password')]"
 					},
@@ -388,6 +382,12 @@
 					},
 					"metadatafile_password": {
 						"value": "[parameters('metadatafile_password')]"
+					},
+					"FileServer4_properties_typeProperties_host": {
+						"value": "[parameters('FileServer4_properties_typeProperties_host')]"
+					},
+					"FileServer4_properties_typeProperties_userId": {
+						"value": "[parameters('FileServer4_properties_typeProperties_userId')]"
 					},
 					"FileServer5_properties_typeProperties_host": {
 						"value": "[parameters('FileServer5_properties_typeProperties_host')]"
